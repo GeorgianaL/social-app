@@ -10,6 +10,7 @@ import {
   IconButton,
   withStyles,
 } from "@material-ui/core";
+import { isEmpty } from "ramda";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 
 import PostStyle from "./Post.styles";
@@ -23,7 +24,7 @@ const Post = ({ classes, description, media, user }) => (
           className={classes.avatar}
           src={user.avatar}
         >
-          {user.avatar === "" && user.name[0]}
+          {isEmpty(user.avatar) && user.name[0]}
         </Avatar>
       }
       title={user.name}
@@ -32,11 +33,14 @@ const Post = ({ classes, description, media, user }) => (
       }}
     />
     <CardMedia className={classes.media} image={media} />
-    <CardContent>
-      <Typography variant="body2" color="textSecondary" component="p">
-        {description}
-      </Typography>
-    </CardContent>
+    {!isEmpty(description) && (
+      <CardContent>
+        <Typography variant="body2" color="textSecondary" component="p">
+          {description}
+        </Typography>
+      </CardContent>
+    )}
+
     <CardActions disableSpacing>
       <IconButton aria-label="add to favorites">
         <FavoriteIcon />

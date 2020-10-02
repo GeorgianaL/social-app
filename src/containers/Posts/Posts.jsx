@@ -15,7 +15,13 @@ const Posts = ({ actions, loading, posts }) => {
   }
 
   return (
-    <Grid container direction="column" spacing={2}>
+    <Grid
+      container
+      direction="column"
+      justify="center"
+      alignItems="center"
+      spacing={2}
+    >
       {posts.map((post) => (
         <Grid item key={post.id}>
           <Post {...post} />
