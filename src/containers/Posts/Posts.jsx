@@ -13,9 +13,9 @@ const Posts = ({ actions, loading, posts }) => {
   if (loading) {
     return <p>loading</p>;
   }
-  console.log(posts);
+
   return (
-    <Grid container direction="column">
+    <Grid container direction="column" spacing={2}>
       {posts.map((post) => (
         <Grid item key={post.id}>
           <Post {...post} />
