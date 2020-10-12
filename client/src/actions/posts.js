@@ -6,7 +6,7 @@ export const getAllPosts = () => (dispatch) => {
     type: actionTypes.GET_POSTS_PENDING,
   });
 
-  return GET("http://localhost:3000/posts")
+  return GET("/posts")
     .then((response) => {
       dispatch({
         type: actionTypes.GET_POSTS_SUCCESS,

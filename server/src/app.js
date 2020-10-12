@@ -1,11 +1,24 @@
 const express = require("express");
 const fs = require("fs");
 const cors = require("cors");
+const axios = require("axios");
+const bodyParser = require("body-parser");
+const morgan = require("morgan");
 const firebase = require("./firebaseInit");
 
 const app = express();
-app.use(cors());
 const port = process.env.PORT || 3000;
+
+//add other middleware
+const corsOptions = {
+  origin: "http://localhost:3001",
+  optionsSuccessStatus: 200, // For legacy browser support
+  methods: "GET, PUT, POST, DELETE",
+};
+app.use(cors(corsOptions));
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.listen(port, (err) => {
   if (err) {
@@ -30,8 +43,26 @@ app.get("/posts", (req, res) => {
 });
 
 app.get("/messages", (req, res) => {
-  const file = JSON.parse(fs.readFileSync("messages.json").toString());
-  res.send(JSON.stringify(file));
+  const data = JSON.parse(fs.readFileSync("messages.json").toString());
+  res.send(JSON.stringify(data.messages));
 });
 
-console.log(firebase.messaging);
+app.post("/messages", (req, res) => {
+  const rawData = fs.readFileSync("messages.json");
+  const data = JSON.parse(rawData);
+  const newMessages = { messages: [...data.messages, req.body] };
+
+  try {
+    fs.writeFileSync("messages.json", JSON.stringify(newMessages));
+  } catch (err) {
+    console.error(`Error while writing messages file: ${err}`);
+    res.writeHead(500, { "Content-Type": "text/plain" });
+    res.end();
+  }
+
+  // return all messages on response
+  res.writeHead(200, "OK", { "Content-Type": "text/plain" });
+  res.end();
+});
+
+// console.log(firebase.messaging);

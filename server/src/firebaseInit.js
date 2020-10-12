@@ -5,7 +5,7 @@ const serviceAccount = require(settings.googleApplicationCredentials);
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: "your-database-url-here",
+  databaseURL: "gs://social-app-89067.appspot.com/",
 });
 
 module.exports = {
