@@ -20,6 +20,11 @@ app.use((req, res, next) => {
 });
 
 app.get("/posts", (req, res) => {
-  const postsFile = JSON.parse(fs.readFileSync("posts.json").toString());
-  res.send(JSON.stringify(postsFile));
+  const file = JSON.parse(fs.readFileSync("posts.json").toString());
+  res.send(JSON.stringify(file));
+});
+
+app.get("/messages", (req, res) => {
+  const file = JSON.parse(fs.readFileSync("messages.json").toString());
+  res.send(JSON.stringify(file));
 });
