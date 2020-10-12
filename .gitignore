@@ -4,6 +4,8 @@ client/package-lock.json
 server/node_modules
 server/.env
 server/push-notifications-article-firebase-adminsdk-cfw06-3948ab8d93.json
+server/social-app-89067-firebase-adminsdk-y0si1-c2addf7ee4.json
+server/package-lock.json
 
 yarn-error.log
 

@@ -19,6 +19,10 @@ app.use((req, res, next) => {
   next();
 });
 
+app.get("/", (req, res) => {
+  res.send("Social app API");
+});
+
 app.get("/posts", (req, res) => {
   const file = JSON.parse(fs.readFileSync("posts.json").toString());
   res.send(JSON.stringify(file));
