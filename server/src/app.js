@@ -1,6 +1,7 @@
 const express = require("express");
 const fs = require("fs");
 const cors = require("cors");
+const firebase = require("./firebaseInit");
 
 const app = express();
 app.use(cors());
@@ -32,3 +33,5 @@ app.get("/messages", (req, res) => {
   const file = JSON.parse(fs.readFileSync("messages.json").toString());
   res.send(JSON.stringify(file));
 });
+
+console.log(firebase.messaging);

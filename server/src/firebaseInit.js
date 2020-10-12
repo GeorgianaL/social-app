@@ -1,12 +1,13 @@
-import admin from "firebase-admin";
+const admin = require("firebase-admin");
+const settings = require("./settings");
 
-import { googleApplicationCredentials } from "./settings";
-
-const serviceAccount = require(googleApplicationCredentials);
+const serviceAccount = require(settings.googleApplicationCredentials);
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
   databaseURL: "your-database-url-here",
 });
 
-export const messaging = admin.messaging();
+module.exports = {
+  messaging: admin.messaging(),
+};
