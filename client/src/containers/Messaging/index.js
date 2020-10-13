@@ -35,7 +35,7 @@ export const Messaging = () => {
             axios
               .post("/messages", values)
               .then((resp) => {
-                setMessages(resp.data.messages.concat(messages));
+                setMessages(resp.data);
                 actions.setSubmitting(false);
                 toast.success("Submitted succesfully");
               })

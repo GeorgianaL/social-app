@@ -62,7 +62,7 @@ app.post("/messages", (req, res) => {
 
   // return all messages on response
   res.writeHead(200, "OK", { "Content-Type": "text/plain" });
-  res.end();
+  res.end(JSON.stringify(newMessages.messages));
 });
 
 // console.log(firebase.messaging);
