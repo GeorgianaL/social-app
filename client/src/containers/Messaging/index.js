@@ -10,6 +10,7 @@ import {
   CircularProgress,
 } from "@material-ui/core";
 import { toast } from "react-toastify";
+import { Alert, AlertTitle } from "@material-ui/lab";
 
 export const Messaging = () => {
   const [messages, setMessages] = React.useState([]);
@@ -93,7 +94,7 @@ export const Messaging = () => {
         </Formik>
       </Grid>
       <Grid item>
-        <Grid container justify="center" direction="column">
+        <Grid container justify="center" direction="column" spacing={1}>
           {requesting ? (
             <CircularProgress />
           ) : (
@@ -103,7 +104,10 @@ export const Messaging = () => {
                 const { name, message } = m;
                 return (
                   <Grid item key={index}>
-                    {name}: {message}
+                    <Alert severity="info">
+                      <AlertTitle>{name}</AlertTitle>
+                      {message}
+                    </Alert>
                   </Grid>
                 );
               })}
